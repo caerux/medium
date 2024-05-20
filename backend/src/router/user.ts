@@ -30,6 +30,7 @@ userRouter.post("/signup", async (c) => {
       data: {
         email: body.email,
         password: body.password,
+        name: body.name,
       },
     });
 
@@ -73,5 +74,22 @@ userRouter.post("/signin", async (c) => {
   } catch (error) {
     c.status(411);
     return c.text("Invalid");
+  }
+});
+
+userRouter.get("/all", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env?.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const users = await prisma.user.findMany();
+
+    return c.json({ users });
+  } catch (error) {
+    c.status(500);
+    return c.json({
+      message: "Error while fetching users",
+    });
   }
 });
