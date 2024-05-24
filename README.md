@@ -18,6 +18,7 @@ Welcome to MyBlog, a simple blog website where users can sign up, sign in, and c
   - React.js
 
 - **Backend**:
-  - Node.js
-  - Express.js
-  - MongoDB 
+  - Hono.js
+  - Cloudflare workers
+  - PostgressSQL
+  - Prisma 
